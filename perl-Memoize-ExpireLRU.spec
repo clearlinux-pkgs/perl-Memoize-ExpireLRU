@@ -80,10 +80,10 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.26.1/Memoize/ExpireLRU.pm
-/usr/lib/perl5/vendor_perl/5.26.1/auto/Memoize/ExpireLRU/DumpCache.al
-/usr/lib/perl5/vendor_perl/5.26.1/auto/Memoize/ExpireLRU/ShowStats.al
-/usr/lib/perl5/vendor_perl/5.26.1/auto/Memoize/ExpireLRU/autosplit.ix
+/usr/lib/perl5/vendor_perl/5.28.0/Memoize/ExpireLRU.pm
+/usr/lib/perl5/vendor_perl/5.28.0/auto/Memoize/ExpireLRU/DumpCache.al
+/usr/lib/perl5/vendor_perl/5.28.0/auto/Memoize/ExpireLRU/ShowStats.al
+/usr/lib/perl5/vendor_perl/5.28.0/auto/Memoize/ExpireLRU/autosplit.ix
 
 %files dev
 %defattr(-,root,root,-)
