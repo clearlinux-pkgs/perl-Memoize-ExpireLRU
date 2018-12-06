@@ -4,7 +4,7 @@
 #
 Name     : perl-Memoize-ExpireLRU
 Version  : 0.56
-Release  : 6
+Release  : 7
 URL      : https://cpan.metacpan.org/authors/id/N/NE/NEILB/Memoize-ExpireLRU-0.56.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/N/NE/NEILB/Memoize-ExpireLRU-0.56.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libm/libmemoize-expirelru-perl/libmemoize-expirelru-perl_0.56-1.debian.tar.xz
