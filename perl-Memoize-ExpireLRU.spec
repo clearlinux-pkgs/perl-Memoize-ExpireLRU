@@ -4,7 +4,7 @@
 #
 Name     : perl-Memoize-ExpireLRU
 Version  : 0.56
-Release  : 10
+Release  : 11
 URL      : https://cpan.metacpan.org/authors/id/N/NE/NEILB/Memoize-ExpireLRU-0.56.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/N/NE/NEILB/Memoize-ExpireLRU-0.56.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libm/libmemoize-expirelru-perl/libmemoize-expirelru-perl_0.56-1.debian.tar.xz
@@ -24,6 +24,7 @@ this module online:
 Summary: dev components for the perl-Memoize-ExpireLRU package.
 Group: Development
 Provides: perl-Memoize-ExpireLRU-devel = %{version}-%{release}
+Requires: perl-Memoize-ExpireLRU = %{version}-%{release}
 
 %description dev
 dev components for the perl-Memoize-ExpireLRU package.
@@ -42,7 +43,7 @@ license components for the perl-Memoize-ExpireLRU package.
 cd ..
 %setup -q -T -D -n Memoize-ExpireLRU-0.56 -b 1
 mkdir -p deblicense/
-mv %{_topdir}/BUILD/debian/* %{_topdir}/BUILD/Memoize-ExpireLRU-0.56/deblicense/
+cp -r %{_topdir}/BUILD/debian/* %{_topdir}/BUILD/Memoize-ExpireLRU-0.56/deblicense/
 
 %build
 export http_proxy=http://127.0.0.1:9/
@@ -68,6 +69,7 @@ make TEST_VERBOSE=1 test
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/perl-Memoize-ExpireLRU
 cp LICENSE %{buildroot}/usr/share/package-licenses/perl-Memoize-ExpireLRU/LICENSE
+cp deblicense/copyright %{buildroot}/usr/share/package-licenses/perl-Memoize-ExpireLRU/deblicense_copyright
 if test -f Makefile.PL; then
 make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
@@ -92,3 +94,4 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 %files license
 %defattr(0644,root,root,0755)
 /usr/share/package-licenses/perl-Memoize-ExpireLRU/LICENSE
+/usr/share/package-licenses/perl-Memoize-ExpireLRU/deblicense_copyright
