@@ -4,7 +4,7 @@
 #
 Name     : perl-Memoize-ExpireLRU
 Version  : 0.56
-Release  : 11
+Release  : 12
 URL      : https://cpan.metacpan.org/authors/id/N/NE/NEILB/Memoize-ExpireLRU-0.56.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/N/NE/NEILB/Memoize-ExpireLRU-0.56.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libm/libmemoize-expirelru-perl/libmemoize-expirelru-perl_0.56-1.debian.tar.xz
@@ -12,6 +12,7 @@ Summary  : 'Expiry plug-in for Memoize that adds LRU cache expiration'
 Group    : Development/Tools
 License  : Artistic-1.0 Artistic-1.0-Perl GPL-1.0
 Requires: perl-Memoize-ExpireLRU-license = %{version}-%{release}
+Requires: perl-Memoize-ExpireLRU-perl = %{version}-%{release}
 BuildRequires : buildreq-cpan
 
 %description
@@ -38,18 +39,28 @@ Group: Default
 license components for the perl-Memoize-ExpireLRU package.
 
 
+%package perl
+Summary: perl components for the perl-Memoize-ExpireLRU package.
+Group: Default
+Requires: perl-Memoize-ExpireLRU = %{version}-%{release}
+
+%description perl
+perl components for the perl-Memoize-ExpireLRU package.
+
+
 %prep
 %setup -q -n Memoize-ExpireLRU-0.56
-cd ..
-%setup -q -T -D -n Memoize-ExpireLRU-0.56 -b 1
+cd %{_builddir}
+tar xf %{_sourcedir}/libmemoize-expirelru-perl_0.56-1.debian.tar.xz
+cd %{_builddir}/Memoize-ExpireLRU-0.56
 mkdir -p deblicense/
-cp -r %{_topdir}/BUILD/debian/* %{_topdir}/BUILD/Memoize-ExpireLRU-0.56/deblicense/
+cp -r %{_builddir}/debian/* %{_builddir}/Memoize-ExpireLRU-0.56/deblicense/
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
+export LANG=C.UTF-8
 if test -f Makefile.PL; then
 %{__perl} Makefile.PL
 make  %{?_smp_mflags}
@@ -59,7 +70,7 @@ else
 fi
 
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
@@ -68,8 +79,8 @@ make TEST_VERBOSE=1 test
 %install
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/perl-Memoize-ExpireLRU
-cp LICENSE %{buildroot}/usr/share/package-licenses/perl-Memoize-ExpireLRU/LICENSE
-cp deblicense/copyright %{buildroot}/usr/share/package-licenses/perl-Memoize-ExpireLRU/deblicense_copyright
+cp %{_builddir}/Memoize-ExpireLRU-0.56/LICENSE %{buildroot}/usr/share/package-licenses/perl-Memoize-ExpireLRU/61d16ea0946201fe0a4ab992cb42a5a578dd6dfc
+cp %{_builddir}/Memoize-ExpireLRU-0.56/deblicense/copyright %{buildroot}/usr/share/package-licenses/perl-Memoize-ExpireLRU/4ded22b6400527cd73aa970102a10f1012a680a7
 if test -f Makefile.PL; then
 make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
@@ -82,10 +93,6 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.28.2/Memoize/ExpireLRU.pm
-/usr/lib/perl5/vendor_perl/5.28.2/auto/Memoize/ExpireLRU/DumpCache.al
-/usr/lib/perl5/vendor_perl/5.28.2/auto/Memoize/ExpireLRU/ShowStats.al
-/usr/lib/perl5/vendor_perl/5.28.2/auto/Memoize/ExpireLRU/autosplit.ix
 
 %files dev
 %defattr(-,root,root,-)
@@ -93,5 +100,12 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/perl-Memoize-ExpireLRU/LICENSE
-/usr/share/package-licenses/perl-Memoize-ExpireLRU/deblicense_copyright
+/usr/share/package-licenses/perl-Memoize-ExpireLRU/4ded22b6400527cd73aa970102a10f1012a680a7
+/usr/share/package-licenses/perl-Memoize-ExpireLRU/61d16ea0946201fe0a4ab992cb42a5a578dd6dfc
+
+%files perl
+%defattr(-,root,root,-)
+/usr/lib/perl5/vendor_perl/5.30.1/Memoize/ExpireLRU.pm
+/usr/lib/perl5/vendor_perl/5.30.1/auto/Memoize/ExpireLRU/DumpCache.al
+/usr/lib/perl5/vendor_perl/5.30.1/auto/Memoize/ExpireLRU/ShowStats.al
+/usr/lib/perl5/vendor_perl/5.30.1/auto/Memoize/ExpireLRU/autosplit.ix
