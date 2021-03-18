@@ -4,7 +4,7 @@
 #
 Name     : perl-Memoize-ExpireLRU
 Version  : 0.56
-Release  : 14
+Release  : 15
 URL      : https://cpan.metacpan.org/authors/id/N/NE/NEILB/Memoize-ExpireLRU-0.56.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/N/NE/NEILB/Memoize-ExpireLRU-0.56.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libm/libmemoize-expirelru-perl/libmemoize-expirelru-perl_0.56-1.debian.tar.xz
@@ -105,7 +105,7 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files perl
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.30.3/Memoize/ExpireLRU.pm
-/usr/lib/perl5/vendor_perl/5.30.3/auto/Memoize/ExpireLRU/DumpCache.al
-/usr/lib/perl5/vendor_perl/5.30.3/auto/Memoize/ExpireLRU/ShowStats.al
-/usr/lib/perl5/vendor_perl/5.30.3/auto/Memoize/ExpireLRU/autosplit.ix
+/usr/lib/perl5/vendor_perl/5.32.1/Memoize/ExpireLRU.pm
+/usr/lib/perl5/vendor_perl/5.32.1/auto/Memoize/ExpireLRU/DumpCache.al
+/usr/lib/perl5/vendor_perl/5.32.1/auto/Memoize/ExpireLRU/ShowStats.al
+/usr/lib/perl5/vendor_perl/5.32.1/auto/Memoize/ExpireLRU/autosplit.ix
